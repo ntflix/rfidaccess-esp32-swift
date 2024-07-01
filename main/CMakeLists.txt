@@ -14,16 +14,14 @@ add_custom_command(
         $$\( echo '$<TARGET_PROPERTY:__idf_main,INCLUDE_DIRECTORIES>' | tr '\;' '\\n' | sed -e 's/\\\(.*\\\)/-Xcc -I\\1/g' \)
         $$\( echo '${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES}'           | tr ' '  '\\n' | sed -e 's/\\\(.*\\\)/-Xcc -I\\1/g' \)
         -import-bridging-header ${CMAKE_CURRENT_LIST_DIR}/BridgingHeader.h
-        ${CMAKE_CURRENT_LIST_DIR}/spiConfig.swift
         ${CMAKE_CURRENT_LIST_DIR}/scannerStatus.swift
-        ${CMAKE_CURRENT_LIST_DIR}/RFID.swift
+        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner.swift
         ${CMAKE_CURRENT_LIST_DIR}/Main.swift
         -c -o ${CMAKE_CURRENT_BINARY_DIR}/_swiftcode.o
         DEPENDS
         ${CMAKE_CURRENT_LIST_DIR}/BridgingHeader.h
-        ${CMAKE_CURRENT_LIST_DIR}/spiConfig.swift
         ${CMAKE_CURRENT_LIST_DIR}/scannerStatus.swift
-        ${CMAKE_CURRENT_LIST_DIR}/RFID.swift
+        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner.swift
         ${CMAKE_CURRENT_LIST_DIR}/Main.swift
 )
 add_custom_target(main-swiftcode DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/_swiftcode.o)

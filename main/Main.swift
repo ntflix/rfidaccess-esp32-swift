@@ -2,11 +2,8 @@
 func app_main() {
   print("Hello from Swift on ESP32-C6!")
 
-  let scanner = RFIDScanner()
-
-  if scanner.status == ScannerStatus.scanning {
-    print("Scanning...")
-  } else {
-    print("Idle...")
-  }
+  let scanner = RFIDScanner(onTagScanned: { sn in
+    print("Tag scanned (sn: \(sn))")
+  })
+  scanner.startScanning()
 }

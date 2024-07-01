@@ -8,14 +8,16 @@ typedef struct {
     int32_t mosi_gpio;
     int32_t sck_gpio;
     int32_t sda_gpio;
-    int32_t clock_speed_hz;
-    uint32_t device_flags;
-    bool bus_is_initialized;
+    // int32_t clock_speed_hz;
+    // uint32_t device_flags;
+    // bool bus_is_initialized;
 } SPIConfig;
 
 void set_rc522_config(rc522_config_t *config, 
-                      uint16_t scan_interval_ms, 
-                      size_t task_stack_size, 
-                      uint8_t task_priority, 
-                      rc522_transport_t transport, 
+                    //   uint16_t scan_interval_ms, 
+                    //   size_t task_stack_size, 
+                    //   uint8_t task_priority, 
+                    //   rc522_transport_t transport, 
                       SPIConfig spiConfig);
+
+void rc522_handler(void* arg, esp_event_base_t base, int32_t event_id, void* event_data);
