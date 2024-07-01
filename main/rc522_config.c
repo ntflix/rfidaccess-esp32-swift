@@ -1,5 +1,3 @@
-#pragma once
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -7,6 +5,8 @@ extern "C" {
 #include <esp_event.h>
 #include <driver/spi_master.h>
 #include <driver/i2c.h> // TODO: Log warning: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`
+#include "rc522.h"
+#include "rc522_config.h"
 
 void set_rc522_config(rc522_config_t *config, 
                       uint16_t scan_interval_ms, 

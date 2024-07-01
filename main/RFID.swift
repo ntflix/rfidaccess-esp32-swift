@@ -1,5 +1,5 @@
 struct RFIDScanner {
-  private var scanner: rc522_handle_t
+  private var scanner: rc522_handle_t?
   private var config: rc522_config_t
   public var status: ScannerStatus = .idle
 
