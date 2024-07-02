@@ -1,6 +1,6 @@
 idf_component_register(
-    SRCS "Dummy.c" "rc522_config.c" "rc522_config.h"
-    INCLUDE_DIRS "."
+    SRCS "c_utils/rc522_utils/rc522_config.c"
+    INCLUDE_DIRS "." "c_utils" "c_utils/rc522_utils"
 )
 
 execute_process(COMMAND xcrun -f swiftc OUTPUT_VARIABLE SWIFTC OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -14,14 +14,14 @@ add_custom_command(
         $$\( echo '$<TARGET_PROPERTY:__idf_main,INCLUDE_DIRECTORIES>' | tr '\;' '\\n' | sed -e 's/\\\(.*\\\)/-Xcc -I\\1/g' \)
         $$\( echo '${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES}'           | tr ' '  '\\n' | sed -e 's/\\\(.*\\\)/-Xcc -I\\1/g' \)
         -import-bridging-header ${CMAKE_CURRENT_LIST_DIR}/BridgingHeader.h
-        ${CMAKE_CURRENT_LIST_DIR}/scannerStatus.swift
-        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner.swift
+        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/ScannerStatus.swift
+        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/RFIDScanner.swift
         ${CMAKE_CURRENT_LIST_DIR}/Main.swift
         -c -o ${CMAKE_CURRENT_BINARY_DIR}/_swiftcode.o
         DEPENDS
         ${CMAKE_CURRENT_LIST_DIR}/BridgingHeader.h
-        ${CMAKE_CURRENT_LIST_DIR}/scannerStatus.swift
-        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner.swift
+        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/ScannerStatus.swift
+        ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/RFIDScanner.swift
         ${CMAKE_CURRENT_LIST_DIR}/Main.swift
 )
 add_custom_target(main-swiftcode DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/_swiftcode.o)
