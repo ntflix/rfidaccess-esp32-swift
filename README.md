@@ -1,4 +1,4 @@
-# swift-rfid-esp32
+# rfidaccess-esp32-swift
 
 A (very crude) example of using [Embedded Swift](https://www.swift.org/getting-started/embedded-swift/) to read RFID serials with RC522 on ESP32 (tested only w/ esp32c6).
 
