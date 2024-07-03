@@ -1,6 +1,6 @@
 idf_component_register(
     SRCS "c_utils/rc522_utils/rc522_config.c"
-    INCLUDE_DIRS "." "c_utils" "c_utils/rc522_utils"
+    INCLUDE_DIRS "." "c_utils" "c_utils/rc522_utils" "c_utils/wifi_utils"
 )
 
 execute_process(COMMAND xcrun -f swiftc OUTPUT_VARIABLE SWIFTC OUTPUT_STRIP_TRAILING_WHITESPACE)
@@ -17,12 +17,22 @@ add_custom_command(
         ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/ScannerStatus.swift
         ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/RFIDScanner.swift
         ${CMAKE_CURRENT_LIST_DIR}/Main.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFi.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiMode.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiConfig.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiInterface.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiScanMethod.swift
         -c -o ${CMAKE_CURRENT_BINARY_DIR}/_swiftcode.o
         DEPENDS
         ${CMAKE_CURRENT_LIST_DIR}/BridgingHeader.h
         ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/ScannerStatus.swift
         ${CMAKE_CURRENT_LIST_DIR}/RFIDScanner/RFIDScanner.swift
         ${CMAKE_CURRENT_LIST_DIR}/Main.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFi.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiMode.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiConfig.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiInterface.swift
+        ${CMAKE_CURRENT_LIST_DIR}/WiFi/WiFiScanMethod.swift
 )
 add_custom_target(main-swiftcode DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/_swiftcode.o)
 

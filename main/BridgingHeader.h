@@ -7,3 +7,4 @@
 #include "rc522.h"
 
 #include "rc522_config.h"
+#include "esp_wifi.h"
